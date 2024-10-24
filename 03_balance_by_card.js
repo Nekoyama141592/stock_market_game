@@ -9,12 +9,12 @@ const playGame = () => {
         const random = Math.floor(Math.random() * 5);
         const card = cards[random]
         stock += card
-        if (card < 60) {
-            // カードが60より小さかったら1つ買う
+        if (card < 0 && cash > stock) {
+            // カードが0より小さい、かつ現金に余裕があれば1株買う
             cash -= stock;
             stockCount++;
-        } else if (card > 60) {
-            // カードが60より大きかったら1つ売る
+        } else if (card > 0 && stockCount > 0) {
+            // カードが0より大きい、かつ1株以上あれば1株売る
             cash += stock;
             stockCount--;
         }
@@ -29,6 +29,6 @@ const main = () => {
         results.push(result)
     }
     const average = results.reduce((sum, value) => sum + value, 0) / results.length;
-    console.log(average); // 結果: 8001.2
+    console.log(average); // 結果: 8003.975
 }
 main();

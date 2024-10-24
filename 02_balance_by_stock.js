@@ -10,11 +10,11 @@ const playGame = () => {
         const card = cards[random]
         stock += card
         if (stock < 600 && stock < cash) {
-            // 株価が600より小さい、かつ現金に余裕があれば1つ買う
+            // 株価が600より小さい、かつ現金に余裕があれば1株買う
             cash -= stock;
             stockCount++;
-        } else if (stock > 600 && stock < cash) {
-            // 株価が600より大きい、かつ現金に余裕があれば1つ売る
+        } else if (stock > 600 && stockCount > 0) {
+            // 株価が600より大きい、かつ1株以上あれば1株売る
             cash += stock;
             stockCount--;
         }
